@@ -1,0 +1,33 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS, Python, editors
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.vscode/
+.idea/
+
+# Generated firmware/build outputs
+build/
+dist/
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+
+# Unreviewed recordings, artifacts, and private application records
+/dataset/raw/
+/dataset/processed/
+/outputs/
+/private/
+/submissions/private/
+*.wav
+*.flac
