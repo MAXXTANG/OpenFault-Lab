@@ -10,6 +10,9 @@
 | Stack use exceeds reservation | STM32 reserves 4 KiB; static FFT workspace | Hardware stack watermark and full call-chain analysis |
 | XIAO is a different platform | Shared core, explicitly separate acquisition adapter | Final competition demonstrator must use STM32C5 |
 | External sensor drivers are not designed | No guessed STM32 I2S/I2C mappings | Exact sensor BOM, timing and pin-conflict review |
+| Dataset leakage through re-cut recordings | Reject repeated session IDs, paths and exact used PCM hashes; split before windowing | Audit recording provenance for edited or overlapping excerpts |
+| Offline timeline confused with MCU latency | Label window-end detection delay separately from host arrival and inference time | Real device timestamps and timing instrumentation |
+| Sequence gaps confused with DMA integrity | Event logger reports gaps, wraps and boot epochs | Device-side overrun counters; sequence continuity alone is insufficient |
 | ST components mistaken for MIT project code | Download dependencies separately; retain notices | License review before distributing binaries |
 
 No public accuracy, fault-diagnosis, cross-device generalization, or remaining-life claim is supported by this increment.

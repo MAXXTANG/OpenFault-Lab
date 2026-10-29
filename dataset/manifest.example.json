@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "provenance": "synthetic",
+  "split_unit": "session",
+  "dataset_license": "UNRELEASED",
+  "sessions": [
+    {
+      "session_id": "normal_train_01",
+      "device_id": "bench_fan_01",
+      "split": "train",
+      "wav": "normal_train_01.wav",
+      "condition": "Separate steady normal recording; document speed and fixture",
+      "anomalous_intervals": []
+    },
+    {
+      "session_id": "variation_test_01",
+      "device_id": "bench_fan_01",
+      "split": "test",
+      "wav": "variation_test_01.wav",
+      "condition": "Separate recording with documented controlled variation",
+      "anomalous_intervals": [[32, 64]]
+    }
+  ]
+}

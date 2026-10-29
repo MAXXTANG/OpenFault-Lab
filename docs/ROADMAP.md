@@ -20,7 +20,16 @@ Completion gate: a documented, reviewable design with unresolved hardware assump
 
 ## P1: Host baseline and data — started
 
-Create session-based data capture and feature extraction; establish a transparent baseline. Use labeled synthetic signals only for software checks. Compare normal operation and controlled variations using recordings from separate sessions or devices.
+The no-flash tooling is implemented:
+
+- [x] Extract PCM16 WAV features through the shared C implementation.
+- [x] Validate session/device split rules, normal-only fitting, exact duplicate PCM and file provenance boundaries.
+- [x] Run a deterministic synthetic experiment that exposes both detectable amplitude changes and missed frequency changes.
+- [x] Report window confusion counts, precision/recall/F1, false alert episodes/hour and nominal detection delay.
+- [x] Record feature-only JSONL sessions; check resets, source, gaps and counter wraps.
+- [x] Generate a self-contained HTML report and test the serial adapter with a virtual terminal.
+- [ ] Acquire authorized, labeled real-machine sessions and report measured results.
+- [ ] Instrument device timing, DMA continuity and memory high-water on hardware.
 
 ## P2: STM32C5 implementation — UART target started
 

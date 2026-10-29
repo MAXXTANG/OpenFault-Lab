@@ -8,6 +8,12 @@
 - XIAO ESP32S3 Sense PDM microphone path using the same core; raw samples are not persisted.
 - Build instructions, third-party boundaries, and honest validation records.
 
+## Increment 2: no-flash host workflow
+
+The WAV feature-extraction CLI, session-separated frozen-baseline evaluation, deterministic synthetic experiment, JSON/HTML reports and feature-only event recorder are implemented. Native tests cover leakage rejection, malformed recordings, event continuity, error recovery and a software pseudo-terminal. See [OFFLINE_WORKFLOW.md](OFFLINE_WORKFLOW.md).
+
+No real recordings or actual serial-device interaction are required for this increment. Remaining real-data and hardware claims stay unverified.
+
 ## Next: device verification
 
 1. Connect the XIAO over USB and inspect its boot/event stream after flashing the locally built sketch.

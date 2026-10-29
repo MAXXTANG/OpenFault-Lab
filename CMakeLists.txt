@@ -17,3 +17,8 @@ add_executable(synthetic_demo tools/synthetic_demo.c)
 target_link_libraries(synthetic_demo PRIVATE openfault)
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
 add_test(NAME synthetic_json COMMAND "${Python3_EXECUTABLE}" "${CMAKE_SOURCE_DIR}/tests/check_demo.py" $<TARGET_FILE:synthetic_demo>)
+
+add_executable(pcm_features tools/pcm_features.c)
+target_link_libraries(pcm_features PRIVATE openfault)
+target_compile_options(pcm_features PRIVATE -Wall -Wextra -Werror -Wconversion)
+add_test(NAME offline_pipeline COMMAND "${Python3_EXECUTABLE}" "${CMAKE_SOURCE_DIR}/tests/test_host.py" $<TARGET_FILE:pcm_features>)

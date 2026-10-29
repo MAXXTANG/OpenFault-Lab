@@ -11,6 +11,16 @@ The first implementation includes a shared C processing core, native tests, a **
 The maintainer has a XIAO ESP32S3 Sense for early microphone experiments. The final development board remains **NUCLEO-C5A3ZG**; its availability and external sensor configuration still need confirmation.
 The project is being prepared for the **STM32Cube Innovation Challenge**, with an internal completion target of **January 28, 2027**. Receiving a free development board is not assumed.
 
+## Offline work without a board
+
+A complete local experiment is available now: controlled WAV input, the same C feature implementation as the firmware, session/device split checks, a frozen training baseline, metrics, and a self-contained HTML report.
+
+```sh
+python3 tools/offline.py demo --out outputs/demo_01
+```
+
+Build the native targets first using the commands below. Open `outputs/demo_01/evaluation/report.html`; the banner clearly marks the data as synthetic. The demo intentionally includes a frequency-only change that the current RMS baseline misses. See [offline workflow](docs/OFFLINE_WORKFLOW.md) and [event-only logging](docs/TELEMETRY.md) for real-recording preparation and serial-log replay. No device access or firmware upload is involved in this demonstration.
+
 ## First experiment
 
 The initial demonstrator will use a small, guarded, low-voltage DC fan or motor, an external MEMS microphone, and a three-axis accelerometer. Using the STM32Cube ecosystem, the STM32C5 will acquire sensor data, extract time-domain and FFT features, and calculate an anomaly score against a per-machine baseline.
@@ -47,6 +57,8 @@ Any public sample recordings will come from controlled bench tests with permissi
 | --- | --- |
 | [firmware/common/openfault.h](firmware/common/openfault.h) | Shared PCM16 features and detector API |
 | [firmware/xiao_sense/README.md](firmware/xiao_sense/README.md) | Current XIAO microphone build and calibration |
+| [docs/OFFLINE_WORKFLOW.md](docs/OFFLINE_WORKFLOW.md) | WAV evaluation, split checks, metrics and report |
+| [docs/TELEMETRY.md](docs/TELEMETRY.md) | Strict summary-event logging and replay |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | Phases and the first feasibility checklist |
 | [docs/VALIDATION.md](docs/VALIDATION.md) | What has and has not been verified |
 | [hardware/README.md](hardware/README.md) | Planned bench hardware and wiring gates |

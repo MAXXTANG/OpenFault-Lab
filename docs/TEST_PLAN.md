@@ -6,6 +6,12 @@ The root CMake/CTest suite checks silence, DC offset removal, an analytic 1 kHz 
 
 The synthetic demo emits 80 JSON lines. Calibration is 32 windows. A synthetic amplitude step starts at sequence 48; the debounce first signals an anomaly at sequence 50. These checks demonstrate software behavior on constructed inputs, not fault-detection performance.
 
+## Offline host workflow
+
+The `offline_pipeline` CTest target runs Python integration tests against the compiled C PCM reader. Cases cover synthetic detection/misses, no test-data fitting, session/path/device/content leakage, explicit tail handling, invalid audio and annotations, little-endian decoding, report escaping, telemetry source/range enforcement, valid-prefix preservation, counter wraps, boot epochs and CLI replay. A software pseudo-terminal checks serial line framing and terminal setup without a real device.
+
+Full and sanitizer native runs are recorded in [VALIDATION.md](VALIDATION.md). The HTML report is visually checked separately. Synthetic metrics and pseudo-terminal success are not hardware results.
+
 ## Hardware acceptance
 
 ### XIAO
