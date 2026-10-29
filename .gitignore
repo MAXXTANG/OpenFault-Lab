@@ -31,3 +31,7 @@ dist/
 /submissions/private/
 *.wav
 *.flac
+
+# Downloaded build dependencies and local tools
+/.deps/
+/.tools/

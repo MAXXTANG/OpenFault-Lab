@@ -1,0 +1,14 @@
+name: Native core
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S . -B build/host -DCMAKE_BUILD_TYPE=Debug
+      - run: cmake --build build/host
+      - run: ctest --test-dir build/host --output-on-failure

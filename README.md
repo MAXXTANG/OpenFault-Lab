@@ -6,8 +6,9 @@ When a small fan or motor starts making an unusual noise, it can be hard to tell
 
 ## Status
 
-This repository starts with a project plan. Firmware, sensor wiring, hardware measurements, and detection results are not yet available. The intended development board is **NUCLEO-C5A3ZG**; board availability and the complete sensor configuration still need to be confirmed. No successful build, hardware test, or detection performance is claimed.
+The first implementation includes a shared C processing core, native tests, a **XIAO ESP32S3 Sense microphone** sketch, and an **STM32C5 synthetic UART** target. Native checks and target builds are tracked in [validation](docs/VALIDATION.md). No hardware execution, real-machine detection accuracy, or continuous-capture performance is claimed.
 
+The maintainer has a XIAO ESP32S3 Sense for early microphone experiments. The final development board remains **NUCLEO-C5A3ZG**; its availability and external sensor configuration still need confirmation.
 The project is being prepared for the **STM32Cube Innovation Challenge**, with an internal completion target of **January 28, 2027**. Receiving a free development board is not assumed.
 
 ## First experiment
@@ -44,6 +45,8 @@ Any public sample recordings will come from controlled bench tests with permissi
 
 | Path | Purpose |
 | --- | --- |
+| [firmware/common/openfault.h](firmware/common/openfault.h) | Shared PCM16 features and detector API |
+| [firmware/xiao_sense/README.md](firmware/xiao_sense/README.md) | Current XIAO microphone build and calibration |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | Phases and the first feasibility checklist |
 | [docs/VALIDATION.md](docs/VALIDATION.md) | What has and has not been verified |
 | [hardware/README.md](hardware/README.md) | Planned bench hardware and wiring gates |
@@ -51,7 +54,18 @@ Any public sample recordings will come from controlled bench tests with permissi
 | [dataset/README.md](dataset/README.md) | Data provenance, splits, and release rules |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute |
 
-There are no build or installation commands yet. They will be added after the toolchain and first runnable implementation are verified.
+## Run the native checks
+
+```sh
+cmake -S . -B build/host -G Ninja -DCMAKE_BUILD_TYPE=Debug
+cmake --build build/host
+ctest --test-dir build/host --output-on-failure
+./build/host/synthetic_demo
+```
+
+Requirements: C11 compiler, CMake, Ninja, and Python 3. The demo emits synthetic JSON events; it is not microphone data.
+
+For target builds, see the [XIAO microphone guide](firmware/xiao_sense/README.md) and [STM32 UART guide](firmware/stm32c5/README.md). Neither build helper flashes a device. Review [architecture](docs/ARCHITECTURE.md), [test plan](docs/TEST_PLAN.md), and [known risks](docs/RISK_REGISTER.md) before hardware testing.
 
 ## References
 
